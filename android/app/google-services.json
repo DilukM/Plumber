@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "723876304473",
+    "project_id": "plumber-252fc",
+    "storage_bucket": "plumber-252fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723876304473:android:4918f1d9ec8443c1fb0348",
+        "android_client_info": {
+          "package_name": "com.radon.plumber"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzdbUjYMIerg7D4JFPpdvksAZ4daXbjkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

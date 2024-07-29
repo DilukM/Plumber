@@ -1,0 +1,56 @@
+{
+  "Ads": {
+    "Jobs": [
+      {
+        "id": "",
+        "userId": "",
+        "Title": "",
+        "District": "",
+        "Location": "",
+        "Salary": "",
+        "Requirements": "",
+        "Description": "",
+        "Category": "",
+        "SubCategory": "",
+        "Cover": ""
+      }
+    ],
+    "Services": [
+      {
+        "id": "",
+        "userId": "",
+        "Title": "",
+        "District": "",
+        "Location": "",
+        "Fee": "",
+        "Qualifications": "",
+        "Description": "",
+        "Category": "",
+        "SubCategory": "",
+        "Cover": ""
+      }
+    ],
+    "Products": [
+      {
+        "id": "",
+        "userId": "",
+        "Title": "",
+        "District": "",
+        "Location": "",
+        "Price": "",
+        "Description": "",
+        "Category": "",
+        "SubCategory": "",
+        "Images": [
+          {
+            "Image1": "",
+            "Image2": "",
+            "Image3": "",
+            "Image4": "",
+            "Image5": ""
+          }
+        ]
+      }
+    ]
+  }
+}
