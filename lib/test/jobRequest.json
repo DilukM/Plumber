@@ -1,0 +1,67 @@
+[
+  {
+    "uid": "WpJbFvT9eJcSog43JjLiOgoOpbg1",
+    "title": "Concrete Mixer",
+    "condition": "New",
+    "district": "Colombo",
+    "area": "Colombo 3",
+    "brand": "CementTech",
+    "model": "CT-200",
+    "price": "50000",
+    "description": "High-quality concrete mixer suitable for large construction projects.",
+    "category": "Mixers",
+    "coverUrl": "https://example.com/images/concrete_mixer.jpg"
+  },
+  {
+    "uid": "WpJbFvT9eJcSog43JjLiOgoOpbg1",
+    "title": "Construction Helmet",
+    "condition": "Used",
+    "district": "Kandy",
+    "area": "Kandy Town",
+    "brand": "SafetyFirst",
+    "model": "SF-15",
+    "price": "1500",
+    "description": "Durable and comfortable construction helmet with adjustable straps.",
+    "category": "Safety Gear",
+    "coverUrl": "https://example.com/images/construction_helmet.jpg"
+  },
+  {
+    "uid": "WpJbFvT9eJcSog43JjLiOgoOpbg1",
+    "title": "Power Drill",
+    "condition": "New",
+    "district": "Galle",
+    "area": "Galle Fort",
+    "brand": "DrillMaster",
+    "model": "DM-3000",
+    "price": "12000",
+    "description": "Powerful drill with multiple speed settings for various drilling needs.",
+    "category": "Tools",
+    "coverUrl": "https://example.com/images/power_drill.jpg"
+  },
+  {
+    "uid": "WpJbFvT9eJcSog43JjLiOgoOpbg1",
+    "title": "Scaffolding Set",
+    "condition": "Used",
+    "district": "Negombo",
+    "area": "Negombo Beach",
+    "brand": "BuildSafe",
+    "model": "BS-500",
+    "price": "25000",
+    "description": "Complete scaffolding set for high-rise construction projects.",
+    "category": "Scaffolding",
+    "coverUrl": "https://example.com/images/scaffolding_set.jpg"
+  },
+  {
+    "uid": "WpJbFvT9eJcSog43JjLiOgoOpbg1",
+    "title": "Tile Cutter",
+    "condition": "New",
+    "district": "Matara",
+    "area": "Matara City",
+    "brand": "TileMaster",
+    "model": "TM-100",
+    "price": "8000",
+    "description": "Precision tile cutter for accurate and clean cuts.",
+    "category": "Tools",
+    "coverUrl": "https://example.com/images/tile_cutter.jpg"
+  }
+]

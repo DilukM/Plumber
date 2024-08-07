@@ -74,6 +74,7 @@ class _BrowseJobRequestsState extends State<BrowseJobRequests> {
                 },
                 decoration: InputDecoration(
                   filled: true,
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
                     borderSide:
@@ -97,7 +98,7 @@ class _BrowseJobRequestsState extends State<BrowseJobRequests> {
                     icon: const Icon(Icons.clear),
                     style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(
-                          Color.fromARGB(255, 245, 196, 217)),
+                          Color.fromARGB(255, 255, 170, 0)),
                     ),
                   ),
                   suffixIconColor: Colors.black,

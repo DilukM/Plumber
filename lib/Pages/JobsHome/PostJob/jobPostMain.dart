@@ -2,11 +2,13 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:plumber/Pages/JobsHome/PostJob/browseJobs.dart';
 import 'package:plumber/Pages/JobsHome/PostJob/findJobs.dart';
 import 'package:plumber/Pages/JobsHome/PostJob/postJobPosition.dart';
+import 'package:plumber/Pages/JobsHome/PostJob/postJobsHome.dart';
 import 'package:plumber/Pages/chat.dart';
 import 'package:plumber/Pages/profile.dart';
 import 'package:plumber/global/globalValues.dart';
 
 import 'package:flutter/material.dart';
+import 'package:plumber/utils/themes/theme.dart';
 import 'package:provider/provider.dart';
 
 class JobPostMainPage extends StatefulWidget {
@@ -21,7 +23,7 @@ class _JobPostMainPageState extends State<JobPostMainPage> {
 
   late List<Widget> pages;
   late Widget currentPage;
-  late PostJobs postJobHome;
+  late PostJobsHome postJobHome;
   late BrowseJobRequests search;
   late JobPositionPost post;
   late ChatPage chat;
@@ -29,13 +31,13 @@ class _JobPostMainPageState extends State<JobPostMainPage> {
 
   @override
   void initState() {
-    postJobHome = const PostJobs();
+    postJobHome = const PostJobsHome();
     search = const BrowseJobRequests();
     post = const JobPositionPost();
     chat = const ChatPage();
     profile = const Profile();
 
-    pages = [postJobHome, search, post, chat, profile];
+    pages = [postJobHome, post, chat, profile];
     super.initState();
   }
 
@@ -46,7 +48,7 @@ class _JobPostMainPageState extends State<JobPostMainPage> {
         bottomNavigationBar: CurvedNavigationBar(
             height: 65,
             backgroundColor: Colors.transparent,
-            color: const Color.fromARGB(255, 208, 8, 68),
+            color: AppTheme.colors.primary,
             animationDuration: const Duration(milliseconds: 500),
             onTap: (int index) {
               setState(() {
@@ -56,26 +58,26 @@ class _JobPostMainPageState extends State<JobPostMainPage> {
                 func.setPostIndex(0);
               });
             },
-            items: const [
+            items: [
               Icon(
                 Icons.home_outlined,
-                color: Colors.white,
+                color: Colors.grey[900],
               ),
-              Icon(
-                Icons.search_outlined,
-                color: Colors.white,
-              ),
+              // Icon(
+              //   Icons.search_outlined,
+              //   color: Colors.grey[900],
+              // ),
               Icon(
                 Icons.add_outlined,
-                color: Colors.white,
+                color: Colors.grey[900],
               ),
               Icon(
                 Icons.chat_outlined,
-                color: Colors.white,
+                color: Colors.grey[900],
               ),
               Icon(
                 Icons.account_circle_rounded,
-                color: Colors.white,
+                color: Colors.grey[900],
               ),
             ]),
         body: pages[currentTabIndex],

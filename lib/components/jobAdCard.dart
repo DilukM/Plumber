@@ -18,58 +18,66 @@ class JobAddCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.width / 4,
-                  width: MediaQuery.of(context).size.width / 4,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(fit: BoxFit.cover, image: cover)),
-                ),
-                SizedBox(
-                  width: 12,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      position,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(color: Colors.grey, offset: Offset(2, 3), blurRadius: 5)
+            ],
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.grey[200],
+          ),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.width / 4,
+                    width: MediaQuery.of(context).size.width / 4,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image:
+                            DecorationImage(fit: BoxFit.cover, image: cover)),
+                  ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        position,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      company,
-                      style: TextStyle(
-                        fontSize: 12,
+                      Text(
+                        company,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
                       ),
-                    ),
-                    Image.asset('assets/Rectangel star.png'),
-                    Text(
-                      location,
-                      style: TextStyle(
-                        fontSize: 12,
+                      Image.asset('assets/Rectangel star.png'),
+                      Text(
+                        location,
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Divider(),
-          ],
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

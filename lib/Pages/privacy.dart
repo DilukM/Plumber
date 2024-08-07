@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:plumber/Pages/JobsHome/Jobs/jobDetails.dart';
 import 'package:plumber/components/jobAdCard.dart';
 import 'package:plumber/global/globalValues.dart';
 import 'package:plumber/utils/themes/theme.dart';

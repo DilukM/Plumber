@@ -26,10 +26,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                 Navigator.pop(context);
               },
             ),
-            iconTheme: IconThemeData(color: Colors.white),
+            iconTheme: IconThemeData(color: Colors.grey[900]),
             title: Text(
               "Details",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.grey[900]),
             ),
           ),
           body: FutureBuilder<DocumentSnapshot>(

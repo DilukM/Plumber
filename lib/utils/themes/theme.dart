@@ -17,7 +17,7 @@ class AppTheme {
     brightness: Brightness.light,
     primaryColor: AppTheme.colors.primary,
     colorScheme: ColorScheme.fromSeed(seedColor: AppTheme.colors.primary),
-    scaffoldBackgroundColor: Colors.grey[900],
+    scaffoldBackgroundColor: Colors.white,
     textTheme: AppTextTheme.lightTextTheme,
     elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
     inputDecorationTheme: AppTextFormFieldTheme.lightInputDecorationTheme,

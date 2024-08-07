@@ -49,7 +49,7 @@ class _OTPState extends State<OTP> {
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w100,
-                        color: Colors.grey,
+                        color: Colors.grey[300],
                       ),
                     ),
                     SizedBox(
@@ -85,7 +85,8 @@ class _OTPState extends State<OTP> {
                             verifyOtp(context, otpCode!);
                           }
                         },
-                        child: Text("Verify"),
+                        child: Text("Verify",
+                            style: TextStyle(color: Colors.grey[900])),
                       ),
                     ),
                     SizedBox(
@@ -96,7 +97,7 @@ class _OTPState extends State<OTP> {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black38,
+                        color: Colors.white,
                       ),
                     ),
                     SizedBox(

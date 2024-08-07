@@ -56,10 +56,9 @@ class _ChatState extends State<ChatPage> {
             Navigator.pop(context);
           },
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.grey[900]),
         title: Text(
           "Chat",
-          style: TextStyle(color: Colors.white),
         ),
       ),
       body: Column(

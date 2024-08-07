@@ -80,7 +80,8 @@ class _LoginState extends State<Login> {
                   onPressed: () {
                     sendPhoneNumber();
                   },
-                  child: Text("Continue"),
+                  child: Text("Continue",
+                      style: TextStyle(color: Colors.grey[900])),
                 ),
               ),
               SizedBox(
@@ -113,7 +114,10 @@ class _LoginState extends State<Login> {
                       SizedBox(
                         width: 10,
                       ),
-                      Text("Login with Google"),
+                      Text(
+                        "Login with Google",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ],
                   ),
                 ),

@@ -1,4 +1,3 @@
-import 'package:plumber/Pages/JobsHome/Jobs/availableJobs.dart';
 import 'package:plumber/Pages/JobsHome/PostJob/browseJobs.dart';
 import 'package:plumber/Pages/JobsHome/PostJob/postJobsHome.dart';
 import 'package:plumber/global/globalValues.dart';
@@ -17,16 +16,14 @@ class _PostJobsState extends State<PostJobs> {
   late List<Widget> pages;
   late Widget currentPage;
   late PostJobsHome findJobs;
-  late AvailableJobs availableJobs;
   late BrowseJobRequests browseJobs;
 
   @override
   void initState() {
     findJobs = const PostJobsHome();
     browseJobs = const BrowseJobRequests();
-    availableJobs = AvailableJobs();
 
-    pages = [findJobs, browseJobs, availableJobs];
+    pages = [findJobs, browseJobs];
     super.initState();
   }
 

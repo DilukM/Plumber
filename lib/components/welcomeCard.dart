@@ -25,13 +25,16 @@ class WelcomeCard extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.all(12),
-          height: 150,
+          height: 200,
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                    color: Colors.grey, offset: Offset(0, 4), blurRadius: 5)
+                    color: Colors.black, offset: Offset(0, 4), blurRadius: 5)
               ],
-              color: const Color.fromARGB(255, 22, 1, 7),
+              gradient: LinearGradient(colors: [
+                Color.fromARGB(255, 255, 162, 0),
+                Color.fromARGB(255, 255, 197, 8)
+              ]),
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
                   image: image, fit: BoxFit.cover, opacity: 0.1)),
@@ -42,22 +45,22 @@ class WelcomeCard extends StatelessWidget {
                 textAlign: TextAlign.center,
                 titleEN,
                 style: TextStyle(
-                    color: const Color.fromARGB(255, 255, 230, 0),
-                    fontSize: 20,
+                    color: Colors.grey[900],
+                    fontSize: 26,
                     fontWeight: FontWeight.bold),
               ),
-              Text(
-                textAlign: TextAlign.center,
-                title,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
-              ),
+              // Text(
+              //   textAlign: TextAlign.center,
+              //   title,
+              //   style: TextStyle(
+              //       color: Colors.white,
+              //       fontSize: 20,
+              //       fontWeight: FontWeight.bold),
+              // ),
               Text(
                 textAlign: TextAlign.center,
                 subtitle,
-                style: TextStyle(fontSize: 14, color: Colors.white70),
+                style: TextStyle(fontSize: 14, color: Colors.grey[800]),
               )
             ],
           ),

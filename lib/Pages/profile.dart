@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:plumber/utils/themes/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path/path.dart' as path;
@@ -109,11 +110,15 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        automaticallyImplyLeading: false,
-        iconTheme: IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           "Profile",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.grey[900]),
         ),
       ),
       body: FutureBuilder<void>(
@@ -161,7 +166,7 @@ class _ProfileState extends State<Profile> {
                     child: ElevatedButton(
                       child: const Text(
                         "Edit Profile",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -170,8 +175,7 @@ class _ProfileState extends State<Profile> {
                                 builder: (context) => ProfileEdit()));
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 215, 26, 86),
+                          backgroundColor: AppTheme.colors.primary,
                           side: BorderSide.none,
                           shape: const StadiumBorder()),
                     ),
@@ -227,6 +231,30 @@ class _ProfileState extends State<Profile> {
                   // SizedBox(
                   //   height: 100,
                   // )
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    'Version: 10.8.4',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  Container(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20.0, bottom: 0),
+                        child: Text(
+                          "Powered by",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      )),
+                  SizedBox(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.asset('assets/SRN Logo.png'),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  )
                 ],
               ),
             ),

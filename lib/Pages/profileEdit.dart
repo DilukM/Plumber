@@ -182,7 +182,10 @@ class _ProfileEditState extends State<ProfileEdit> {
                             onPressed: () {
                               updateUserData();
                             },
-                            child: Text('Update')),
+                            child: Text(
+                              'Update',
+                              style: TextStyle(color: Colors.grey[900]),
+                            )),
                       )
                     ],
                   ),

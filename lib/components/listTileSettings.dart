@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plumber/utils/themes/theme.dart';
 
 class ListTileSettings extends StatelessWidget {
   final String title;
@@ -24,12 +25,12 @@ class ListTileSettings extends StatelessWidget {
           height: 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: Color.fromARGB(255, 215, 26, 86).withOpacity(0.1),
+            color: AppTheme.colors.primary.withOpacity(0.1),
           ),
           child: Icon(
             icon,
             size: 16,
-            color: Color.fromARGB(255, 215, 26, 86),
+            color: Color.fromARGB(255, 150, 98, 1),
           ),
         ),
         title: Text(

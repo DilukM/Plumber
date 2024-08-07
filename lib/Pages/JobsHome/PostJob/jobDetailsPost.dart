@@ -27,10 +27,10 @@ class _JobDetailsPostState extends State<JobDetailsPost> {
                 Navigator.pop(context);
               },
             ),
-            iconTheme: IconThemeData(color: Colors.white),
+            iconTheme: IconThemeData(color: Colors.grey[900]),
             title: Text(
               "Details",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.grey[900]),
             ),
           ),
           body: FutureBuilder<DocumentSnapshot>(
@@ -65,7 +65,7 @@ class _JobDetailsPostState extends State<JobDetailsPost> {
                               AutoSizeText(
                                 jobData['name'] + ' | ' + jobData['district'],
                                 style: TextStyle(
-                                    color: AppTheme.colors.primary,
+                                    color: Colors.grey[900],
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold),
                               ),

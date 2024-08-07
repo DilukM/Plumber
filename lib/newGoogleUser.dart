@@ -30,7 +30,7 @@ class _NewGoogleUserState extends State<NewGoogleUser> {
                   child: Column(
                     children: [
                       Text(
-                        'Register',
+                        'REGISTER',
                         style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w900,
@@ -43,6 +43,9 @@ class _NewGoogleUserState extends State<NewGoogleUser> {
                       Container(
                           width: MediaQuery.of(context).size.width / 2,
                           child: Image.asset('assets/register.jpg')),
+                      SizedBox(
+                        height: 30,
+                      ),
                       TextField(
                         controller: fnameController,
                         decoration: InputDecoration(
@@ -74,7 +77,10 @@ class _NewGoogleUserState extends State<NewGoogleUser> {
                         width: MediaQuery.of(context).size.width,
                         child: ElevatedButton(
                           onPressed: () => storeData(),
-                          child: Text("Register"),
+                          child: Text(
+                            "Register",
+                            style: TextStyle(color: Colors.grey[900]),
+                          ),
                         ),
                       ),
                     ],

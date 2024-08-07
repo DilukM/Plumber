@@ -76,7 +76,7 @@ class _ConversationPageState extends State<ConversationPage> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.white,
+            color: Colors.grey[900],
           ),
           onPressed: () {
             Navigator.pop(context);

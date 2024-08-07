@@ -8,6 +8,7 @@ import 'package:plumber/Pages/chat.dart';
 import 'package:plumber/Pages/search.dart';
 
 import 'package:flutter/material.dart';
+import 'package:plumber/utils/themes/theme.dart';
 import 'package:provider/provider.dart';
 
 import '../../../global/globalValues.dart';
@@ -50,7 +51,7 @@ class _SellProductsMainPageState extends State<SellProductsMainPage> {
         bottomNavigationBar: CurvedNavigationBar(
             height: 65,
             backgroundColor: Colors.transparent,
-            color: const Color.fromARGB(255, 208, 8, 68),
+            color: AppTheme.colors.primary,
             animationDuration: const Duration(milliseconds: 500),
             onTap: (int index) {
               setState(() {
@@ -60,22 +61,22 @@ class _SellProductsMainPageState extends State<SellProductsMainPage> {
                 func.setPostIndex(0);
               });
             },
-            items: const [
+            items: [
               Icon(
                 Icons.add_outlined,
-                color: Colors.white,
+                color: Colors.grey[900],
               ),
               Icon(
                 Icons.list_outlined,
-                color: Colors.white,
+                color: Colors.grey[900],
               ),
               Icon(
                 Icons.chat_outlined,
-                color: Colors.white,
+                color: Colors.grey[900],
               ),
               Icon(
                 Icons.account_circle_rounded,
-                color: Colors.white,
+                color: Colors.grey[900],
               ),
             ]),
         body: pages[currentTabIndex],

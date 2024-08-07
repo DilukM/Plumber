@@ -140,10 +140,10 @@ class _SellProductPostState extends State<SellProductPost> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text(
+        iconTheme: IconThemeData(color: Colors.grey[900]),
+        title: Text(
           "Post a product",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.grey[900]),
         ),
       ),
       body: SingleChildScrollView(

@@ -9,14 +9,14 @@ class AppElevatedButtonTheme {
   static final lightElevatedButtonTheme = ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
     elevation: 0,
-    foregroundColor: Colors.white,
+    foregroundColor: Colors.grey[900],
     backgroundColor: AppTheme.colors.primary,
     side: BorderSide(color: AppTheme.colors.primary),
     padding: const EdgeInsets.symmetric(
       vertical: 18,
     ),
     textStyle: TextStyle(
-        fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),
+        fontSize: 16, color: Colors.grey[900], fontWeight: FontWeight.w600),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   ));
 

@@ -127,15 +127,15 @@ class _EditAdScreenState extends State<EditAdScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Edit Ad',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.grey[900]),
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.white,
+            color: Colors.grey[900],
           ),
           onPressed: () {
             Navigator.pop(context);

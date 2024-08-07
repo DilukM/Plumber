@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:plumber/Pages/JobsHome/PostJob/availableJobRequests.dart';
+import 'package:plumber/Pages/ProductsHome/BuyProducts/availableProducts.dart';
 import 'package:plumber/utils/themes/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -75,6 +76,7 @@ class _BrowseProductsState extends State<BrowseProducts> {
                 },
                 decoration: InputDecoration(
                   filled: true,
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
                     borderSide:
@@ -98,7 +100,7 @@ class _BrowseProductsState extends State<BrowseProducts> {
                     icon: const Icon(Icons.clear),
                     style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(
-                          Color.fromARGB(255, 245, 196, 217)),
+                          Color.fromARGB(255, 255, 170, 0)),
                     ),
                   ),
                   suffixIconColor: Colors.black,
@@ -185,7 +187,7 @@ class _BrowseProductsState extends State<BrowseProducts> {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            AvailableJobRequests(title: items[index]),
+                            AvailableProducts(title: items[index]),
                       ),
                     );
                   },

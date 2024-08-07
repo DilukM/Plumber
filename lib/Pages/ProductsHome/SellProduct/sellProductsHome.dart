@@ -44,7 +44,7 @@ class _SellProductsHomeState extends State<SellProductsHome> {
         centerTitle: true,
         title: Text(
           'Ongoing Ads',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.grey[900]),
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(

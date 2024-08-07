@@ -1,15 +1,10 @@
-import 'dart:io';
-
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:plumber/components/Map.dart';
 import 'package:plumber/components/customTextfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:plumber/provider/location_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:file_picker/file_picker.dart';
 
-import '../../../global/globalValues.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../utils/themes/theme.dart';
 
@@ -22,21 +17,15 @@ class JobPositionPost extends StatefulWidget {
 
 class _JobPositionPostState extends State<JobPositionPost> {
   final TextEditingController titleController = TextEditingController();
-  final TextEditingController experienceController = TextEditingController();
-  final TextEditingController districtController = TextEditingController();
-  final TextEditingController companyController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController categoryController = TextEditingController();
-  final TextEditingController requirementsController = TextEditingController();
 
-  final CollectionReference jobpositions =
-      FirebaseFirestore.instance.collection('jobpositions');
+  final CollectionReference serviceNeeds =
+      FirebaseFirestore.instance.collection('serviceNeeds');
   final CollectionReference categoriesCollection =
       FirebaseFirestore.instance.collection('jobCategories');
 
-  File? coverFile;
-  String? coverUrl;
-  bool isCoverUploaded = false;
   String? selectedCategory;
   List<String> categories = [];
   bool isAddingNewCategory = false;
@@ -54,29 +43,6 @@ class _JobPositionPostState extends State<JobPositionPost> {
     });
   }
 
-  Future<void> pickResume() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(type: FileType.image);
-    if (result != null) {
-      setState(() {
-        coverFile = File(result.files.single.path!);
-        isCoverUploaded = true;
-      });
-    }
-  }
-
-  Future<void> uploadResume() async {
-    if (coverFile == null) return;
-
-    final storageRef = FirebaseStorage.instance.ref();
-    final resumeRef = storageRef.child(
-        'covers/${DateTime.now().millisecondsSinceEpoch}_${coverFile!.path.split('/').last}');
-    final uploadTask = resumeRef.putFile(coverFile!);
-
-    final snapshot = await uploadTask.whenComplete(() {});
-    coverUrl = await snapshot.ref.getDownloadURL();
-  }
-
   Future<void> addNewCategory(String newCategory) async {
     await categoriesCollection.add({'name': newCategory});
     setState(() {
@@ -88,40 +54,32 @@ class _JobPositionPostState extends State<JobPositionPost> {
 
   void submitJobPost() async {
     final ap = Provider.of<CustomAuthProvider>(context, listen: false);
+    final lp = Provider.of<LocationData>(context, listen: false);
+
     try {
-      await uploadResume();
-      await jobpositions.add({
+      await serviceNeeds.add({
         'uid': ap.uid,
         'title': titleController.text,
-        'experience': experienceController.text,
-        'district': districtController.text,
-        'company': companyController.text,
+        'latitude': lp.latitude,
+        'address': locationController.text,
+        'longitude': lp.longitude,
         'description': descriptionController.text,
         'category': selectedCategory,
-        'requirements': requirementsController.text,
-        'coverUrl': coverUrl,
+        'addressData': lp.addressData,
+        'status': "Pending",
         'timestamp': FieldValue.serverTimestamp(),
       });
 
-      // Clear the resume file and URL after submission
-      setState(() {
-        coverFile = null;
-        coverUrl = null;
-        isCoverUploaded = false;
-      });
-
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Job post submitted successfully')),
+        SnackBar(content: Text('Request submitted successfully')),
       );
 
       // Clear the text fields
       titleController.clear();
-      experienceController.clear();
-      districtController.clear();
-      companyController.clear();
+      locationController.clear();
+
       descriptionController.clear();
       categoryController.clear();
-      requirementsController.clear();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Failed to submit job post: $e')),
@@ -133,17 +91,17 @@ class _JobPositionPostState extends State<JobPositionPost> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {
-            final func = context.read<Global>();
-            func.setPostIndex(0);
+            Navigator.pop(context);
           },
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text(
-          "Post Available Job Positions",
-          style: TextStyle(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.grey[900]),
+        title: Text(
+          "Post Your Service Need",
+          style: TextStyle(color: Colors.grey[900]),
         ),
       ),
       body: SingleChildScrollView(
@@ -152,82 +110,10 @@ class _JobPositionPostState extends State<JobPositionPost> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: GestureDetector(
-                  onTap: pickResume,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 8,
-                            color: Colors.black38,
-                          )
-                        ]),
-                    padding: const EdgeInsets.all(12),
-                    child: isCoverUploaded
-                        ? Container(
-                            height: 200,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: FileImage(coverFile!))),
-                          )
-                        : Row(
-                            children: [
-                              SizedBox(
-                                  width: MediaQuery.of(context).size.width / 5,
-                                  child: Image.asset('assets/post.png')),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  AutoSizeText(
-                                    maxFontSize: 14,
-                                    minFontSize: 10,
-                                    'Upload Your Cover Image',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.w900),
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.7,
-                                    child: AutoSizeText(
-                                      maxFontSize: 12,
-                                      maxLines: 2,
-                                      minFontSize: 6,
-                                      'Click here to upload your cover image.\n(.png / .jpg / .jpeg)',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black54,
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                  ),
-                ),
-              ),
               CustomTextField(
                 title: "Title",
                 label: "Enter job title here",
                 controller: titleController,
-              ),
-              CustomTextField(
-                title: "Company",
-                label: "Enter your company name here",
-                controller: companyController,
-              ),
-              CustomTextField(
-                title: "Experience",
-                label: "Enter minimum experience level",
-                controller: experienceController,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -326,65 +212,68 @@ class _JobPositionPostState extends State<JobPositionPost> {
                   ),
                 ),
               ),
-              CustomTextField(
-                title: "District",
-                label: "Enter your district here",
-                controller: districtController,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 8,
-                          color: Colors.black38,
-                        )
-                      ]),
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: const Text(
-                          'Requirements',
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600),
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: const [
+                      BoxShadow(
+                        blurRadius: 8,
+                        color: Colors.black38,
+                      )
+                    ]),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Location",
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    TextField(
+                      controller: locationController,
+                      decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 1, color: AppTheme.colors.primary),
                         ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      TextField(
-                        maxLines: 10,
-                        controller: requirementsController,
-                        decoration: InputDecoration(
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1, color: AppTheme.colors.primary),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1, color: AppTheme.colors.primary),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2, color: AppTheme.colors.primary),
-                          ),
-                          alignLabelWithHint: true,
-                          label:
-                              Text("Enter your required qualifications here"),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 1, color: AppTheme.colors.primary),
                         ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 2, color: AppTheme.colors.primary),
+                        ),
+                        label: Text("Enter your location here"),
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            final result = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MapPage()));
+                            if (result != null && result is String) {
+                              setState(() {
+                                locationController.text = result;
+                              });
+                            }
+                          },
+                          child: Text('Pick the Site Location')),
+                    ),
+                  ],
                 ),
               ),
               Padding(
@@ -448,7 +337,11 @@ class _JobPositionPostState extends State<JobPositionPost> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: ElevatedButton(
-                    onPressed: submitJobPost, child: const Text('Submit')),
+                    onPressed: submitJobPost,
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.grey[900]),
+                    )),
               ),
               SizedBox(
                 height: 100,
